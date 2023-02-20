@@ -1,0 +1,116 @@
+a:focus-visible,
+*[tabindex]:focus-visible,
+input[type='file']:focus-visible {
+    border-radius: rem-calc(5);
+    outline: 2px solid #171111;
+    outline-offset: rem-calc(5);
+
+    .navbar_grid & {
+        outline-color: #fff;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.hide,
+.hide-tablet {
+    @include media-breakpoint-down(md) {
+        display: none !important;
+    }
+}
+
+
+.hide-mobile-landscape {
+    @include media-breakpoint-down(sm) {
+        display: none !important;
+    }
+}
+
+.hide-mobile {
+    @include media-breakpoint-down(xs) {
+        display: none !important;
+    }
+}
+
+.margin-0 {
+    margin: 0rem !important;
+}
+
+.padding-0 {
+    padding: 0rem !important;
+}
+
+.spacing-clean {
+    padding: 0rem !important;
+    margin: 0rem !important;
+}
+
+.margin-top {
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+}
+
+.padding-top {
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+}
+
+.margin-right {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+}
+
+.padding-right {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+}
+
+.margin-bottom {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+}
+
+.padding-bottom {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+}
+
+.margin-left {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+}
+
+.padding-left {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.margin-horizontal {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+}
+
+.padding-horizontal {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.margin-vertical {
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+}
+
+.padding-vertical {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+}

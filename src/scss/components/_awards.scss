@@ -1,0 +1,31 @@
+.awards_link {
+    transition: padding cubic-bezier(0.2, 1, 0.23, 1) 0.65s;
+
+    &::before {
+        content: '';
+        background-color: #171111;
+        display: block;
+        bottom: 0;
+        height: 100%;
+        position: absolute;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform cubic-bezier(0.2, 1, 0.23, 1) 0.65s;
+        width: 100%;
+        will-change: transform;
+    }
+
+    &:hover {
+        padding-left: rem-calc(30);
+        padding-right: rem-calc(30);
+
+        @include media-breakpoint-down(md) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        &::before {
+            transform: scaleY(1);
+        }
+    }
+}

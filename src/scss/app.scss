@@ -1,0 +1,19 @@
+@import '../../node_modules/mouse-follower/src/scss/index';
+
+@import 'settings/variables';
+
+@import 'functions/functions';
+@import 'mixins/mixins';
+
+@import 'global/base';
+@import 'global/webflow';
+@import 'global/link';
+@import 'global/cursor';
+
+@import 'components/navbar';
+@import 'components/intro';
+@import 'components/header';
+@import 'components/showcase';
+@import 'components/studio';
+@import 'components/awards';
+@import 'components/footer';

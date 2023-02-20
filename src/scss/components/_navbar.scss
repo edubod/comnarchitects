@@ -1,0 +1,41 @@
+.navbar_grid {
+    pointer-events: none;
+}
+
+.navbar_logo-link {
+    pointer-events: auto;
+}
+
+.navbar_link-text {
+    transform: translateY(0%) rotate(0deg);
+    transition: cubic-bezier(0.2, 1, 0.23, 1) 0.65s;
+    white-space: nowrap;
+    transition-delay: -0.05s;
+    position: relative;
+}
+
+.navbar_link-italic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    transform: translateY(140%) rotate(10deg);
+    transition: cubic-bezier(0.2, 1, 0.23, 1) 0.65s;
+    transition-delay: 0s;
+}
+
+.navbar_link {
+    pointer-events: auto;
+
+    &:hover {
+        .navbar_link-text {
+            transform: translateY(-140%) rotate(-10deg);
+            transition-delay: 0s;
+        }
+
+        .navbar_link-italic {
+            transform: translateY(0%) rotate(0deg);
+            transition-delay: -0.05s;
+        }
+    }
+}

@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
+import autoprefixer from 'autoprefixer';
 import * as esbuild from 'esbuild';
+import { sassPlugin } from 'esbuild-sass-plugin';
+import postcss from 'postcss';
 
 // Config output
 const BUILD_DIRECTORY = 'dist';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const ENTRY_POINTS = ['src/index.ts'];
+const ENTRY_POINTS = ['src/scss/app.scss', 'src/js/app.ts'];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
@@ -24,6 +27,17 @@ const context = await esbuild.context({
   define: {
     SERVE_PORT: `${SERVE_PORT}`,
   },
+  plugins: [
+    sassPlugin({
+      async transform(source) {
+        const { css } = await postcss([autoprefixer]).process(source, {
+          from: 'src/scss/app.scss',
+        });
+        return css;
+      },
+      quietDeps: true,
+    }),
+  ],
 });
 
 // Build files in prod
@@ -44,7 +58,12 @@ else {
       // Log all served files for easy reference
       const origin = `http://localhost:${port}`;
       const files = ENTRY_POINTS.map(
-        (path) => `${origin}/${path.replace('src/', '').replace('.ts', '.js')}`
+        (path) =>
+          `${origin}/${path
+            .replace('src/js/', 'js/')
+            .replace('.ts', '.js')
+            .replace('src/scss/', 'scss/')
+            .replace('.scss', '.css')}`
       );
 
       console.log('Serving at:', origin);

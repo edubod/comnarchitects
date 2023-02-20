@@ -1,0 +1,43 @@
+.studio_reel-item-inner {
+    display: inline-flex;
+}
+
+.studio_reel-item-icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+
+    &::after {
+        content: "";
+        background: url(https://uploads-ssl.webflow.com/63d7d5a6ecc8771098dae145/63ea234c459877396ab6f5d9_icon-star.svg);
+        height: rem-calc(107);
+        position: absolute;
+        width: rem-calc(107);
+        animation: rotating-360 10s infinite linear;
+
+        @include media-breakpoint-down(lg) {
+            height: rem-calc(60);
+            width: rem-calc(60);
+        }
+
+        @include media-breakpoint-down(sm) {
+            height: rem-calc(35);
+            width: rem-calc(35);
+        }
+    }
+}
+
+@keyframes rotating-360 {
+    0% {
+        transform: rotate(0)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.studio_img {
+    aspect-ratio: 3/3.5;
+    clip-path: polygon(33.3% 25%, 33.3% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+}

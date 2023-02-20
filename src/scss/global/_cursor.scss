@@ -1,0 +1,39 @@
+.mf-cursor {
+    &::before {
+        background-color: rgba(#171111, 25%);
+        backdrop-filter: blur(16px);
+        top: rem-calc(-60);
+        left: rem-calc(-60);
+        height: rem-calc(120);
+        width: rem-calc(120);
+        transform: scale(0);
+    }
+
+    &::after {
+        content: '';
+        background-color: #fff;
+        display: block;
+        position: absolute;
+        top: rem-calc(-35);
+        left: rem-calc(-35);
+        height: rem-calc(70);
+        width: rem-calc(70);
+        opacity: 0;
+        transform: scale(0);
+        transition: transform 0.25s ease-in-out, opacity 0.1s;
+        mask: url('https://uploads-ssl.webflow.com/63d7d5a6ecc8771098dae145/63f38aafbc9f6fb3cd057650_icon-arrow-right.svg');
+        will-change: transform;
+    }
+
+    &.-showcase {
+        &::before {
+            transform: scale(1);
+        }
+
+        &::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+    }
+}
