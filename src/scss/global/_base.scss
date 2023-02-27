@@ -61,7 +61,10 @@ body {
   width: 100%;
   height: auto !important;
   min-height: 100%;
-  overscroll-behavior: none;
+
+  @media (hover: hover) {
+    overscroll-behavior: none;
+  }
 }
 
 body {

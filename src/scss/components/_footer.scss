@@ -19,13 +19,17 @@
 .footer_link {
     &:hover {
         .footer_link-text {
-            transform: translateY(-140%) rotate(-4deg);
-            transition-delay: 0s;
+            @media (hover: hover) {
+                transform: translateY(-140%) rotate(-4deg);
+                transition-delay: 0s;
+            }
         }
 
         .footer_link-italic {
-            transform: translateY(0%) rotate(0deg);
-            transition-delay: -0.05s;
+            @media (hover: hover) {
+                transform: translateY(0%) rotate(0deg);
+                transition-delay: -0.05s;
+            }
         }
     }
 }

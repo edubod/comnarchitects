@@ -4,11 +4,13 @@ import MouseFollower from 'mouse-follower';
 function initMouseFollower() {
   MouseFollower.registerGSAP(gsap);
 
-  new MouseFollower({
-    visible: false,
-    visibleOnState: true,
-    speed: 1,
-  });
+  if (window.matchMedia('(pointer:fine)').matches) {
+    new MouseFollower({
+      visible: false,
+      visibleOnState: true,
+      speed: 1,
+    });
+  }
 }
 
 export default function mouseFollower() {

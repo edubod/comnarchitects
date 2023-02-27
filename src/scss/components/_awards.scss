@@ -16,16 +16,20 @@
     }
 
     &:hover {
-        padding-left: rem-calc(30);
-        padding-right: rem-calc(30);
+        @media (hover: hover) {
+            padding-left: rem-calc(30);
+            padding-right: rem-calc(30);
 
-        @include media-breakpoint-down(md) {
-            padding-left: 0;
-            padding-right: 0;
+            @include media-breakpoint-down(md) {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
 
         &::before {
-            transform: scaleY(1);
+            @media (hover: hover) {
+                transform: scaleY(1);
+            }
         }
     }
 }

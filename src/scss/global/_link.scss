@@ -48,23 +48,31 @@
 .link {
     &:hover {
         &::before {
-            transition-delay: .15s;
-            transform: scaleX(1);
+            @media (hover: hover) {
+                transition-delay: .15s;
+                transform: scaleX(1);
+            }
         }
 
         &::after {
-            transition-delay: 0s;
-            transform: scaleX(0);
+            @media (hover: hover) {
+                transition-delay: 0s;
+                transform: scaleX(0);
+            }
         }
 
         .link_text {
-            transform: translateY(-140%) rotate(-10deg);
-            transition-delay: 0s;
+            @media (hover: hover) {
+                transform: translateY(-140%) rotate(-10deg);
+                transition-delay: 0s;
+            }
         }
 
         .link_text-italic {
-            transform: translateY(0%) rotate(0deg);
-            transition-delay: -0.05s;
+            @media (hover: hover) {
+                transform: translateY(0%) rotate(0deg);
+                transition-delay: -0.05s;
+            }
         }
     }
 }

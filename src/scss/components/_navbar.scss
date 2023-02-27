@@ -29,13 +29,17 @@
 
     &:hover {
         .navbar_link-text {
-            transform: translateY(-140%) rotate(-10deg);
-            transition-delay: 0s;
+            @media (hover: hover) {
+                transform: translateY(-140%) rotate(-10deg);
+                transition-delay: 0s;
+            }
         }
 
         .navbar_link-italic {
-            transform: translateY(0%) rotate(0deg);
-            transition-delay: -0.05s;
+            @media (hover: hover) {
+                transform: translateY(0%) rotate(0deg);
+                transition-delay: -0.05s;
+            }
         }
     }
 }

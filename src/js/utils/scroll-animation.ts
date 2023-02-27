@@ -32,37 +32,6 @@ function initSmoothScroll() {
 
   requestAnimationFrame(scrollFn);
   observeEditor(lenis);
-
-  /*
-  const html = document.documentElement;
-  let observeClass = html.classList.contains('w-editor');
-
-  const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      if (mutation.attributeName === 'class') {
-        const currentClassState = mutation.target.classList.contains('w-editor');
-        if (observeClass !== currentClassState) {
-          observeClass = currentClassState;
-          if (currentClassState) lenis.destroy();
-        }
-      }
-    });
-  });
-
-  observer.observe(html, { attributes: true });
-  */
-
-  /*
-  function checkEditor() {
-    const isEditor = document.documentElement.classList.contains('w-editor');
-    console.log(isEditor);
-    if (isEditor) lenis.destroy;
-    if (!lenis) removeEventListener('onChange', checkEditor);
-  }
-
-  document.documentElement.addEventListener('onChange', checkEditor);
-
-  */
 }
 
 function observeEditor(smoothScroll: { destroy: () => void }) {
