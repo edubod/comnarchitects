@@ -1,8 +1,8 @@
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MouseFollower from 'mouse-follower';
 import { Reeller, ScrollerPlugin } from 'reeller';
+import SplitType from 'split-type';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,12 +16,10 @@ ScrollTrigger.config({
 
 const mm = gsap.matchMedia();
 const breakPointLg = 992;
-//const breakPointMd = 768;
 const breakPointSm = 480;
 
 function initSmoothScroll() {
   const lenis = new Lenis({
-    //lerp: 0.2,
     smooth: true,
   });
 
@@ -33,6 +31,60 @@ function initSmoothScroll() {
   };
 
   requestAnimationFrame(scrollFn);
+  observeEditor(lenis);
+
+  /*
+  const html = document.documentElement;
+  let observeClass = html.classList.contains('w-editor');
+
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.attributeName === 'class') {
+        const currentClassState = mutation.target.classList.contains('w-editor');
+        if (observeClass !== currentClassState) {
+          observeClass = currentClassState;
+          if (currentClassState) lenis.destroy();
+        }
+      }
+    });
+  });
+
+  observer.observe(html, { attributes: true });
+  */
+
+  /*
+  function checkEditor() {
+    const isEditor = document.documentElement.classList.contains('w-editor');
+    console.log(isEditor);
+    if (isEditor) lenis.destroy;
+    if (!lenis) removeEventListener('onChange', checkEditor);
+  }
+
+  document.documentElement.addEventListener('onChange', checkEditor);
+
+  */
+}
+
+function observeEditor(smoothScroll: { destroy: () => void }) {
+  const html = document.documentElement;
+  const config = { attributes: true, childList: false, subtree: false };
+
+  const callback = (mutationList: any) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === 'attributes') {
+        const btn = document.querySelector('.w-editor-bem-EditSiteButton');
+        const bar = document.querySelector('.w-editor-bem-EditorMainMenu');
+        const addTrigger = (target: Element) =>
+          target.addEventListener('click', () => smoothScroll.destroy());
+
+        if (btn) addTrigger(btn);
+        if (bar) addTrigger(bar);
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+  observer.observe(html, config);
 }
 
 function initShowcaseMarquee() {
@@ -90,16 +142,6 @@ function initStudioMarquee() {
   });
 }
 
-function initMouseFollower() {
-  MouseFollower.registerGSAP(gsap);
-
-  new MouseFollower({
-    visible: false,
-    visibleOnState: true,
-    speed: 1,
-  });
-}
-
 function initLogoScroll() {
   const triggerElement = document.querySelector('.section_header');
   if (!triggerElement) return;
@@ -148,6 +190,7 @@ function initIntroImageScroll() {
   const triggerElement = document.querySelector('.intro_image-wrap');
   if (!triggerElement) return;
   const targetStickyElement = triggerElement.querySelector('.intro_image-element');
+  const targetStickyImage = triggerElement.querySelector('.intro_image-sticky-img');
 
   mm.add(
     {
@@ -184,11 +227,74 @@ function initIntroImageScroll() {
   );
 }
 
+function initImageScaleScroll() {
+  const triggerElement = document.querySelectorAll('.showcase_project');
+
+  triggerElement.forEach(function (element) {
+    const targetElement = element.querySelector('.showcase_project-img');
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    });
+
+    tl.fromTo(
+      targetElement,
+      {
+        scale: '1',
+      },
+      {
+        scale: '1.05',
+        duration: 1,
+      }
+    );
+  });
+}
+
+function initHeadlineScroll() {
+  new SplitType('[headline-split]', {
+    types: 'lines, words',
+    tagName: 'span',
+  });
+
+  const textElement = document.querySelectorAll('[headline-split]');
+
+  textElement.forEach(function (element) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 90%',
+        end: 'bottom top',
+      },
+    });
+
+    tl.fromTo(
+      element.querySelectorAll('span'),
+      {
+        'will-change': 'transform',
+        transformOrigin: '50% 100%',
+        yPercent: 100,
+      },
+      {
+        ease: 'power2',
+        opacity: 1,
+        yPercent: 0,
+        stagger: 0.05,
+      }
+    );
+  });
+}
+
 export default function scrollAnimation() {
   initSmoothScroll();
   initShowcaseMarquee();
   initStudioMarquee();
-  initMouseFollower();
   initLogoScroll();
   initIntroImageScroll();
+  initImageScaleScroll();
+  initHeadlineScroll();
 }

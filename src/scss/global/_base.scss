@@ -1,5 +1,7 @@
+// Fluid Responsive by Finsweet https://finsweet.com/client-first/docs/fluid-responsive
+
 :root {
-  --font-from-0: 13;
+  --font-from-0: 12;
   --font-to-0: 16;
   --vw-from-0: calc(1 / 100);
   --vw-to-0: calc(479 / 100);
@@ -67,4 +69,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.line {
+  overflow: hidden;
+  transform-origin: bottom;
 }

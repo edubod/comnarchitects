@@ -1,6 +1,6 @@
 .header_span-icon-wrapper {
     align-items: center;
-    display: inline-flex;
+    display: inline-flex !important;
     justify-content: center;
 
     &::after {
